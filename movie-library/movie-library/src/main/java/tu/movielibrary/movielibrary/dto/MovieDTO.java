@@ -1,0 +1,16 @@
+package tu.movielibrary.movielibrary.dto;
+
+import java.text.DecimalFormat;
+import java.util.Date;
+
+public record MovieDTO (
+        Long id,
+        String name,
+        Date release_date,
+        DecimalFormat rating,
+        String genre,
+        String poster,
+        String description
+
+){
+}

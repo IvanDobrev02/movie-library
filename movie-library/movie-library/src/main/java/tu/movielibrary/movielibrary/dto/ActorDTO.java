@@ -1,4 +1,8 @@
 package tu.movielibrary.movielibrary.dto;
 
-public class ActorDTO {
+public record ActorDTO (
+    Long id,
+    String name,
+    String imageUrl
+){
 }
