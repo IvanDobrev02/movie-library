@@ -3,7 +3,6 @@ package tu.movielibrary.movielibrary.dto;
 import java.util.List;
 
 public record ReviewDTO(
-        Long reviewId,
         String content,
         Integer movieRating,
         Long dateTimeMilli,

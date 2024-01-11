@@ -1,8 +1,11 @@
 package tu.movielibrary.movielibrary.dto;
 
+import tu.movielibrary.movielibrary.model.Movie;
+import java.util.Set;
+
 public record ActorDTO (
-    Long id,
-    String name,
-    String imageUrl
+        String actorName,
+        String imageUrl,
+        Set<Movie> movies
 ){
 }

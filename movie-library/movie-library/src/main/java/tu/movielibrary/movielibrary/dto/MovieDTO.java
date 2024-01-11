@@ -4,8 +4,6 @@ import java.text.DecimalFormat;
 import java.util.Date;
 
 public record MovieDTO (
-        Long id,
-        //test
         String name,
         Date release_date,
         DecimalFormat rating,
