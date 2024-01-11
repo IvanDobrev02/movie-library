@@ -31,15 +31,15 @@ public class ActorServiceImplementation implements ActorService {
     @Override
     public Actor getActorById(Long id) {
 
-        return actorDao.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Cast id: " + id));
+        return actorRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Cast id: " + id));
     }
 
     public Actor findActorById(long userId){
-        return  actorDao.findActorById(userId);
+        return  actorRepo.findActorById(userId);
     }
 
     public Actor findActorByName(String name){
-        return actorDao.findActorByActorName(name);
+        return actorRepo.findActorByActorName(name);
     }
 
     /*public List<Actor> findAll(){

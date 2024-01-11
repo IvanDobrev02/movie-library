@@ -2,9 +2,9 @@ package tu.movielibrary.movielibrary.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tu.movielibrary.dao.MovieDao;
-import tu.movielibrary.model.Movie;
-import tu.movielibrary.service.MovieService;
+import tu.movielibrary.movielibrary.repositories.MovieRepo;
+import tu.movielibrary.movielibrary.model.Movie;
+import tu.movielibrary.movielibrary.service.MovieService;
 
 import java.util.List;
 
@@ -12,38 +12,38 @@ import java.util.List;
 @Service
 public class MovieServiceImplementation implements MovieService {
     @Autowired
-    private MovieDao movieDao;
+    private MovieRepo movieRepo;
 
     @Override
     public void saveMovie(Movie movie) {
-        movieDao.save(movie);
+        movieRepo.save(movie);
     }
 
     @Override
     public List<Movie> getMovies() {
-        return movieDao.findAll();
+        return movieRepo.findAll();
     }
 
     @Override
     public void deleteMovie(Movie movie) {
-        movieDao.delete(movie);
+        movieRepo.delete(movie);
     }
 
     @Override
     public Movie getMovieById(Long id) throws Exception {
-        return movieDao.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Movie id: " + id));
+        return movieRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Movie id: " + id));
     }
 
     public Movie findById(long id){
-        return movieDao.findById(id);
+        return movieRepo.findById(id);
     }
 
     public Movie findByName(String name){
-        return  movieDao.findByName(name);
+        return  movieRepo.findByName(name);
     }
 
     public List<Movie> findAll(){
-        return movieDao.findAll();
+        return movieRepo.findAll();
     }
 
 }

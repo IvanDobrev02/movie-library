@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import tu.movielibrary.dao.RoleDao;
-import tu.movielibrary.dao.UserDao;
-import tu.movielibrary.exception.ResourceAlreadyExists;
-import tu.movielibrary.exception.ResourceNotFoundException;
-import tu.movielibrary.model.Role;
-import tu.movielibrary.model.User;
-import tu.movielibrary.security.UserDetails;
-import tu.movielibrary.service.AuthenticationService;
-import tu.movielibrary.utility.FileUpload;
-import tu.movielibrary.utility.ImageType;
+import tu.movielibrary.movielibrary.repositories.RoleRepo;
+import tu.movielibrary.movielibrary.repositories.UserRepo;
+import tu.movielibrary.movielibrary.exception.ResourceAlreadyExists;
+import tu.movielibrary.movielibrary.exception.ResourceNotFoundException;
+import tu.movielibrary.movielibrary.model.Role;
+import tu.movielibrary.movielibrary.model.User;
+import tu.movielibrary.movielibrary.security.UserDetails;
+import tu.movielibrary.movielibrary.service.AuthenticationService;
+import tu.movielibrary.movielibrary.utility.FileUpload;
+import tu.movielibrary.movielibrary.utility.ImageType;
 
 import java.util.HashSet;
 import java.util.List;
@@ -23,18 +23,18 @@ import java.util.Set;
 @Service
 public class AuthServiceImplementation implements AuthenticationService {
     @Autowired
-    private UserDao userDao;
+    private UserRepo userRepo;
 
     @Autowired
-    private RoleDao roleDao;
+    private RoleRepo roleRepo;
 
     @Override
     public void signupSubmit(User user) throws ResourceAlreadyExists {
 
-        if (userDao.findByUsername(user.getUsername()) != null) throw new ResourceAlreadyExists("Username Already exists");
+        if (userRepo.findByUsername(user.getUsername()) != null) throw new ResourceAlreadyExists("Username Already exists");
 
         // defaultní role = user
-        Role role = roleDao.findByRoleName("USER");
+        Role role = roleRepo.findByRoleName("USER");
         Set<Role> roles = new HashSet<Role>();
         roles.add(role);
         user.setRoles(roles);
@@ -42,12 +42,12 @@ public class AuthServiceImplementation implements AuthenticationService {
 
         user.setEnabled(true);
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword())); // password encrypted
-        userDao.save(user);
+        userRepo.save(user);
     }
 
     @Override
     public List<User> allUser() throws ResourceNotFoundException {
-        List<User> users = userDao.findAllUser();
+        List<User> users = userRepo.findAllUser();
         if (users.isEmpty())
             throw new ResourceNotFoundException("No User found");
         return users;
@@ -55,39 +55,39 @@ public class AuthServiceImplementation implements AuthenticationService {
 
     @Override
     public void deleteUser(Long userId) throws ResourceNotFoundException {
-        userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        userDao.deleteById(userId);
+        userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        userRepo.deleteById(userId);
     }
 
     @Override
     public User profile(UserDetails principal) {
-        User user = userDao.findById(principal.getId()).orElse(new User());
+        User user = userRepo.findById(principal.getId()).orElse(new User());
         return user;
     }
 
     @Override
     public User setEditUserPage(Long userId) throws ResourceNotFoundException {
-        User user = userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
         return user;
     }
 
     @Override
     public void editUserSubmit(Long userId, User userDetails) {
 
-        User user = userDao.findById(userId).orElse(new User());
+        User user = userRepo.findById(userId).orElse(new User());
         user.setUsername(userDetails.getUsername());
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
         user.setEmail(userDetails.getEmail());
         user.setRoles(userDetails.getRoles());
-        userDao.save(user);
+        userRepo.save(user);
     }
 
     @Override
     public void saveUpdatedProfilePicture(Long userId, MultipartFile file) throws ResourceNotFoundException {
-        User user = userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
         String path = FileUpload.saveImage(ImageType.USER_PROFILE, user.getUsername(), file);
         user.setProfilePicPath(path);
-        userDao.save(user);
+        userRepo.save(user);
     }
 }
