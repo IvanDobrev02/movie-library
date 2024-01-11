@@ -5,10 +5,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 import tu.movielibrary.movielibrary.model.Actor;
 
+import java.util.Optional;
+
 @Repository
 @EnableJpaRepositories
 public interface ActorRepo extends JpaRepository<Actor, Long> {
     Actor findActorById(long UserId);
-
-    Actor findActorByActorName(String name);
+    Optional<Actor> findActorByActorName(String name);
 }

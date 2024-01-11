@@ -7,6 +7,7 @@ import tu.movielibrary.movielibrary.model.Movie;
 import tu.movielibrary.movielibrary.service.MovieService;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -38,7 +39,7 @@ public class MovieServiceImplementation implements MovieService {
         return movieRepo.findById(id);
     }
 
-    public Movie findByName(String name){
+    public Optional<Movie> findByName(String name){
         return  movieRepo.findByName(name);
     }
 

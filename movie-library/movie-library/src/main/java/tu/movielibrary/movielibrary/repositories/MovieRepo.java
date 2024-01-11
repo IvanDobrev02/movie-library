@@ -6,12 +6,13 @@ import org.springframework.stereotype.Repository;
 import tu.movielibrary.movielibrary.model.Movie;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @EnableJpaRepositories
 public interface MovieRepo extends JpaRepository<Movie, Long> {
     Movie findById(long movieId);
-    Movie findByName(String name);
+    Optional<Movie> findByName(String name);
 
     List<Movie> findAll();
 
