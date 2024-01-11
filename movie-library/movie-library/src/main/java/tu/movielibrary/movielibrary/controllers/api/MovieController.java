@@ -4,24 +4,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import tu.movielibrary.movielibrary.dto.ActorDTO;
 import tu.movielibrary.movielibrary.dto.MovieDTO;
-import tu.movielibrary.movielibrary.mappers.ActorMapper;
 import tu.movielibrary.movielibrary.mappers.MovieMapper;
-import tu.movielibrary.movielibrary.model.Actor;
 import tu.movielibrary.movielibrary.model.Movie;
-import tu.movielibrary.movielibrary.service.ActorService;
-import tu.movielibrary.movielibrary.service.MovieService;
-import tu.movielibrary.movielibrary.service.implementation.movieServiceImplementation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import tu.movielibrary.movielibrary.service.implementation.MovieServiceImplementation;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
