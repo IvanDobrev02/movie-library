@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import tu.movielibrary.dao.RoleDao;
-import tu.movielibrary.exception.ResourceAlreadyExists;
-import tu.movielibrary.exception.ResourceNotFoundException;
-import tu.movielibrary.model.User;
-import tu.movielibrary.security.UserDetails;
-import tu.movielibrary.service.implementation.AuthServiceImplementation;
+import tu.movielibrary.movielibrary.repositories.RoleRepo;
+import tu.movielibrary.movielibrary.exception.ResourceAlreadyExists;
+import tu.movielibrary.movielibrary.exception.ResourceNotFoundException;
+import tu.movielibrary.movielibrary.model.User;
+import tu.movielibrary.movielibrary.security.UserDetails;
+import tu.movielibrary.movielibrary.service.implementation.AuthServiceImplementation;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class AuthenticationController {
     private AuthServiceImplementation authenticationService;
 
     @Autowired
-    private RoleDao roleDao;
+    private RoleRepo roleRepo;
 
 
     @RequestMapping("/")
@@ -111,7 +111,7 @@ public class AuthenticationController {
         try {
             User user = authenticationService.setEditUserPage(userId);
             model.addAttribute("user", user);
-            model.addAttribute("allRole", roleDao.findAll());
+            model.addAttribute("allRole", roleRepo.findAll());
         } catch (ResourceNotFoundException e) {
             e.printStackTrace();
         }
