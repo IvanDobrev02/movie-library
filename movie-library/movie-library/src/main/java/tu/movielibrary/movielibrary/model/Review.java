@@ -16,7 +16,6 @@ public class Review {
     private Long reviewId;
     @Column(name = "content", nullable = false, columnDefinition = "VARCHAR(800)")
     private String content;
-
     @Column(name = "movieRating", nullable = false, columnDefinition = "INTEGER")
     private Integer movieRating;
     @Column(name = "dateTimeMilli", nullable = false, columnDefinition = "DATETIME")
@@ -25,10 +24,8 @@ public class Review {
     private Integer likes;
     @ElementCollection
     private List<String> comments;
-
     @OneToOne
     private User user;
-
     @ManyToOne
     private Movie movie;
 
