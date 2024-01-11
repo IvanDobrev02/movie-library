@@ -52,7 +52,7 @@ public class ActorController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/api/delete/{id}")
+    @DeleteMapping("/api/delete/actor/{id}")
     public ResponseEntity<?> deleteActor(@PathVariable Long id) {
 
         Actor actor = actorService.getActorById(id);
