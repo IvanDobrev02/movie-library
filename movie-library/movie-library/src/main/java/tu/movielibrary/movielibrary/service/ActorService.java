@@ -1,13 +1,16 @@
 package tu.movielibrary.movielibrary.service;
 
-import tu.movielibrary.movielibrary.dto.ActorDTO;
+import tu.movielibrary.movielibrary.model.Actor;
+
 import java.util.List;
+
 public interface ActorService {
-    void saveActor(ActorDTO actorDTO);
+    void saveActor(Actor actor);
 
-    List<ActorDTO> getActors();
+    List<Actor> getActors();
 
-    void deleteActor(Long actorId);
+    void deleteActor(Actor actor);
 
-    ActorDTO getActorById(Long id) throws Exception;
+    Actor getActorById(Long id) throws Exception;
+
 }
