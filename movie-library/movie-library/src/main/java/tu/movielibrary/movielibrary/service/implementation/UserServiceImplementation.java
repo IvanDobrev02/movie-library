@@ -2,9 +2,9 @@ package tu.movielibrary.movielibrary.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tu.movielibrary.dao.UserDao;
-import tu.movielibrary.model.User;
-import tu.movielibrary.service.UserService;
+import tu.movielibrary.movielibrary.model.User;
+import tu.movielibrary.movielibrary.repositories.UserRepo;
+import tu.movielibrary.movielibrary.service.UserService;
 
 import java.util.List;
 
@@ -12,36 +12,36 @@ import java.util.List;
 public class UserServiceImplementation implements UserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepo userRepo;
 
     @Override
     public void saveNewUser(User user) {
-        userDao.save(user);
+        userRepo.save(user);
     }
 
     @Override
     public void deleteUser(Long id) {
-        userDao.deleteById(id);
+        userRepo.deleteById(id);
     }
 
     public User findByUsername(String name){
-        return userDao.findByUsername(name);
+        return userRepo.findByUsername(name);
     }
 
     public User findById(long id){
-        return userDao.findById(id);
+        return userRepo.findById(id);
     }
 
     public User findByEmail(String email){
-        return userDao.findByEmail(email);
+        return userRepo.findByEmail(email);
     }
 
     public boolean existsByUserID(long userID){
-        return userDao.existsById(userID);
+        return userRepo.existsById(userID);
     }
 
     public List<User>findAll(){
-        return userDao.findAllUser();
+        return userRepo.findAllUser();
     }
 
 }
