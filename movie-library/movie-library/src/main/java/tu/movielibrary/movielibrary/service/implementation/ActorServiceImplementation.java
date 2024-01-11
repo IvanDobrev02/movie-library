@@ -7,6 +7,7 @@ import tu.movielibrary.movielibrary.model.Actor;
 import tu.movielibrary.movielibrary.service.ActorService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ActorServiceImplementation implements ActorService {
@@ -38,12 +39,13 @@ public class ActorServiceImplementation implements ActorService {
         return  actorRepo.findActorById(userId);
     }
 
-    public Actor findActorByName(String name){
+    public Optional<Actor> findActorByName(String name){
         return actorRepo.findActorByActorName(name);
     }
 
     /*public List<Actor> findAll(){
         return actorDao.findAllByActorName();
     }*/
+
 
 }
