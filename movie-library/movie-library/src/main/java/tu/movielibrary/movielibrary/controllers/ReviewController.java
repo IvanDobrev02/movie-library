@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import tu.movielibrary.dao.UserDao;
-import tu.movielibrary.model.Review;
-import tu.movielibrary.service.implementation.MovieServiceImplementation;
-import tu.movielibrary.service.implementation.ReviewServiceImplementation;
+import tu.movielibrary.movielibrary.model.Review;
+import tu.movielibrary.movielibrary.repositories.UserRepo;
+import tu.movielibrary.movielibrary.service.implementation.MovieServiceImplementation;
+import tu.movielibrary.movielibrary.service.implementation.ReviewServiceImplementation;
 
 
 @Controller
@@ -21,14 +21,14 @@ public class ReviewController {
     private MovieServiceImplementation movieService;
 
     @Autowired
-    private UserDao userDao;
+    private UserRepo userRepo;
 
     @PostMapping("/new/{user_id}")
     public String addNewReview(@PathVariable(value = "movie_id") Long movie_id, @PathVariable(value = "user_id") Long user_id, @ModelAttribute("new_review") Review review) {
         try {
             review.setDateTimeMilli(System.currentTimeMillis());
             review.setMovie(movieService.getMovieById(movie_id));
-            review.setUser(userDao.findById(user_id).orElseThrow());
+            review.setUser(userRepo.findById(user_id).orElseThrow());
             reviewService.saveNewReview(review);
         } catch (Exception e) {
             e.printStackTrace();
