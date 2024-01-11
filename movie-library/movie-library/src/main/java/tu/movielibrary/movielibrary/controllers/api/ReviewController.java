@@ -36,10 +36,10 @@ public class ReviewController {
     private ReviewServiceImplementation reviewService;
     private ReviewMapper reviewMapper;
 
-    @GetMapping ("/api/get/reviews")
-    public ResponseEntity<List<Review>> getAllReviews() {
-        List<Review> reviews = reviewService.getReviews();
-        return ResponseEntity.ok(reviews);
+    @GetMapping ("/api/get/review/{id}")
+    public ResponseEntity<?> getSingleReview(@PathVariable Long id) {
+        Review review = reviewService.getSingleReview(id);
+        return ResponseEntity.ok(review);
     }
 
 //  TO DO!!!
