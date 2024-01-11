@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import tu.movielibrary.model.Actor;
-import tu.movielibrary.model.Movie;
-import tu.movielibrary.service.implementation.ActorServiceImplementation;
-import tu.movielibrary.service.implementation.MovieServiceImplementation;
-import tu.movielibrary.utility.FileUpload;
-import tu.movielibrary.utility.ImageType;
+import tu.movielibrary.movielibrary.model.Actor;
+import tu.movielibrary.movielibrary.model.Movie;
+import tu.movielibrary.movielibrary.service.implementation.ActorServiceImplementation;
+import tu.movielibrary.movielibrary.service.implementation.MovieServiceImplementation;
+import tu.movielibrary.movielibrary.utility.FileUpload;
+import tu.movielibrary.movielibrary.utility.ImageType;
 
 import java.util.List;
 
