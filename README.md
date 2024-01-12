@@ -4,7 +4,7 @@
 Movie Library is a comprehensive Java-based web application designed for managing a digital collection of movies. Developed using Spring Boot, it provides a robust backend system with a well-organized structure, ensuring scalability and maintainability.
 
 # Key Components
-MovieLibraryApplication.java: The main class that runs the Spring Boot application.
+MovieLibraryApplication.java: The main class that runs the Spring Boot application. /n
 controllers: Contains controller classes responsible for handling HTTP requests and responses.
 dto (Data Transfer Objects): Defines objects that carry data between processes, facilitating data processing.
 exception: Custom exceptions and exception handling mechanisms for robust error management.
